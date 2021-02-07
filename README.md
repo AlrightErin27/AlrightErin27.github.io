@@ -16,7 +16,6 @@
 Once start has been pushed, a timer will begin in the bottom right corner of the screen and you have control of Q-tip. He only jumps, and that can be done by pressing the space-bar.</p>
 The background image will stay fixed, yet small objects bushes and fences start panning towards you creating the illusion that you are running forwards. You must clear the objects for 1 minute to make it to the end and win the game.</p>
 <p>If you win, there will be a pillow for you to lay your fluffy little lamb head down to sleep. If you don't make it over an object and lose a screen will pop up over your game that complains you you've lost and has an image of tired eyes. The loser screen also offers you a reset button.</p>
-<p>An additional event I'd like to add to the game, if I have time, is to "catch some Z's." Meaning, little z's [img]https://i.imgur.com/gu4zStt.png[/img]will float just in reach as you jump. If you get one it knocks 10 seconds off your time.</p>
 <p><center>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</center></p>
 ## Link:
 
@@ -31,9 +30,6 @@ OG game: [DinoRunGame](https://i.imgur.com/gu4zStt.png).
 ![screenshot initial](framework/winner.png)
 ![screenshot initial](framework/loser.png)
 
-- User stories: a series of statements in the form of "When I {do X}, {Y happens}." These statements should encompass the whole functionality of playing the game.
-  - MVP checklist: A list of all the functionalities that will constitute the bare minimum version of your game. Note that this list should be sized so that you can complete it by ~Thursday of P1 week, leaving Friday-Saturday-Sunday to tackle stretch goals.
-  - Stretch goals: A list of awesome bonus goals you will work on after completing your MVP.
   <p><center>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</center></p>
   <center><h1>User Story</h2></center>
   <p>1. Starting screen- offers start button.</p>
