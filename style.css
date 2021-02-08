@@ -1,4 +1,55 @@
 body {
+  background-color: grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#mainContainer {
   text-align: center;
-  color: rebeccapurple;
+  border: solid rgb(255, 255, 255) 10px;
+  height: 90vh;
+  width: 120vh;
+  background: url("images/nightsky.png");
+  background-size: cover;
+}
+#top-box {
+  /* border-bottom: solid rgb(255, 255, 255) 10px; */
+}
+h1 {
+  font-family: "Pacifico", cursive;
+  color: white;
+  font-size: 90px;
+  margin-top: 1px;
+  margin-bottom: -40px;
+}
+h2 {
+  font-family: "Pacifico", cursive;
+  color: white;
+  font-size: 50px;
+  margin-bottom: -5px;
+  margin-top: 15px;
+}
+#secondaryContainer {
+  display: flex;
+  height: 75.5vh;
+  width: 120vh;
+  /* background-color: rgba(18, 75, 21, 0.358); */
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+#timer-box {
+  border: solid rgb(79, 31, 147) 10px;
+  background-color: rgba(98, 0, 255, 0.392);
+  height: 10vh;
+  width: 30vh;
+}
+#timer {
+  color: white;
+  text-align: center;
+  font-size: 95px;
+  font-family: "Pacifico", cursive;
+  margin: auto;
+}
+button {
+  font-size: 50px;
 }
