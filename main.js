@@ -1,5 +1,5 @@
 //Constants//
-const INITIAL_TIME = 10;
+const INITIAL_TIME = 60;
 
 //App State//
 let timeRemaining = 0;
@@ -59,6 +59,7 @@ class enemyGamePieces {
 //Game Pieces
 let qTip = new gamePiece(100, 400, "white", 270, 270);
 let fence = new enemyGamePieces(800, 400, "brown", 50, 200);
+let fences = [];
 
 //Functions
 function moveGamePieces(e) {
@@ -76,7 +77,7 @@ function updateClock() {
   if (timeRemaining <= 0) {
     timerEndsGame(false);
   }
-  timer.innerText = "00:" + timeRemaining;
+  timer.innerText = timeRemaining;
 }
 
 function initializeGame() {
@@ -104,12 +105,12 @@ function timerEndsGame(isGameWon) {
   //if lost make background img change
 }
 
-//Collision ends game
-function collisionEndsGame() {
-  qTip.alive = false;
-  clearInterval(gameLoopInterval);
-  movementDisplay.innerText = "dead!";
-}
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Collision ends game
+// function collisionEndsGame() {
+//   qTip.alive = false;
+//   clearInterval(gameLoopInterval);
+//   movementDisplay.innerText = "dead!";
+// }
 
 // main game loop
 function gameLoop() {
@@ -121,6 +122,9 @@ function gameLoop() {
   if (qTip.alive) {
     fence.render();
     qTip.render();
+  }
+  if (qTip.y < 400) {
+    qTip.y = qTip.y + 10;
   }
 }
 //Event Listeners
