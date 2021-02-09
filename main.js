@@ -1,5 +1,5 @@
 //Constants//
-const INITIAL_TIME = 60;
+const INITIAL_TIME = 10;
 
 //App State//
 let timeRemaining = 0;
@@ -24,7 +24,8 @@ const ctx = canvas.getContext("2d");
 canvas.setAttribute("height", getComputedStyle(canvas)["height"]);
 canvas.setAttribute("width", getComputedStyle(canvas)["width"]);
 
-ctx.fillStyle = "white";
+//runs to game loop with a set interval
+let gameLoopInterval = setInterval(gameLoop, 60);
 
 //Game Piece Class
 class gamePiece {
@@ -45,20 +46,31 @@ class gamePiece {
 //Game Pieces
 let qTip = new gamePiece(100, 400, "white", 270, 270);
 let fence = new gamePiece(800, 400, "brown", 50, 200);
-qTip.render();
-fence.render();
+ctx.fillStyle = "rgba(255, 204, 0)";
+ctx.fill();
+// qTip.render();
+// fence.render();
 
 //Functions
+function moveGamePieces(e) {
+  switch (e.key) {
+    case " ":
+      qTip.y -= 30;
+      break;
+    case "w":
+      fence.x -= 30;
+  }
+}
+
 function updateClock() {
   console.log("Countdown the timer!");
   timeRemaining--;
   if (timeRemaining <= 0) {
     console.log("Game over! Bomb exploded!");
-    endGame(false);
+    timerEndsGame(false);
   }
   timer.innerText = "00:" + timeRemaining;
 }
-// updateClock();
 
 function initializeGame() {
   // console.log("Set the game up!")
@@ -69,19 +81,39 @@ function initializeGame() {
 }
 initializeGame();
 
-function endGame(isGameWon) {
+function timerEndsGame(isGameWon) {
   console.log("END GAME");
   //clear count and update game over state var
   clearInterval(countdown);
   gameOver = true;
-  //If the game is won chant text to green
   if (isGameWon) {
-    timerEl.style.color = "green";
-    console.log("Hooray! You're hero!");
+    console.log("Finally, I can get some rest.");
   } else {
-    console.log("Everyone is dead!");
+    console.log("No sleep tonight!");
     canvas.style.backgroundImage = "url(images/jumper.jpg)";
   }
   //if lost make background img change
 }
+
+//Collision ends game
+function collisionEndsGame() {
+  qTip.alive = false;
+  clearInterval(gameLoopInterval);
+  movementDisplay.innerText = "dead!";
+}
+
+// main game loop
+function gameLoop() {
+  // clear the canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // check for collisions
+  // detectHit();
+  // render our game objects!
+  if (fence.alive) {
+    fence.render();
+  }
+  qTip.render();
+}
+
 //Event Listeners
+document.addEventListener("keydown", moveGamePieces);
