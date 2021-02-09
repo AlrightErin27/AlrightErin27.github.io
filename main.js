@@ -1,15 +1,16 @@
 //Constants//
-const INITIAL_TIME = 6;
+const INITIAL_TIME = 60;
 
 //App State//
 let timeRemaining = 0;
 let countDown = null;
 let gameOver = false;
 let timer = null;
+let startButton = null;
 
 //variables//
 //~~~~~~~~Buttons
-const startButton = document.querySelector("#start-button");
+// const startButton = document.querySelector("#start-button");
 const pauseButton = document.querySelector("#pause-button");
 const restartButton = document.querySelector("#restart-button");
 //~~~~~~~~Timer
@@ -25,7 +26,7 @@ canvas.setAttribute("height", getComputedStyle(canvas)["height"]);
 canvas.setAttribute("width", getComputedStyle(canvas)["width"]);
 
 //runs to game loop with a set interval
-let gameLoopInterval = setInterval(gameLoop, 60);
+let gameLoopInterval = null;
 
 //Game Piece Class
 class gamePiece {
@@ -62,6 +63,15 @@ let fence = new enemyGamePieces(800, 400, "brown", 50, 200);
 let fences = [];
 
 //Functions
+
+//Button's functions
+let startButtonEl = null;
+function pressStart() {
+  // console.log("start the game");
+  gameOver = false;
+  initializeGame();
+}
+
 function moveGamePieces(e) {
   switch (e.key) {
     case " ":
@@ -78,13 +88,13 @@ function detectHit() {
   //   console.log(`fenceLeft`, fenceLeft);
   let fenceRight = qTip.x <= fence.x + fence.width;
   //   console.log(`fenceRight`, fenceRight);
-  let checkX = fenceLeft && fenceRight;
+  // let checkX = fenceLeft && fenceRight;
 
   let fenceTop = qTip.y + qTip.height >= fence.y;
   //   console.log(`fenceTop`, fenceTop);
   let fenceBottom = qTip.y <= fence.y + fence.height;
   //   console.log(`fenceBottom`, fenceBottom);
-  let checkY = fenceTop + fenceBottom;
+  // let checkY = fenceTop + fenceBottom;
 
   // let checkXY = checkX && checkY;
   // console.log(checkXY);
@@ -95,14 +105,14 @@ function detectHit() {
     qTip.y + qTip.height >= fence.y &&
     qTip.y <= fence.y + fence.height
   ) {
-    endGame();
+    endGame("the game is lost");
   }
 }
 
 function updateClock() {
   timeRemaining--;
   if (timeRemaining <= 0) {
-    endGame(false);
+    endGame("the game is lost");
   }
   timer.innerText = timeRemaining;
 }
@@ -111,31 +121,32 @@ function initializeGame() {
   // console.log("Set the game up!")
   timeRemaining = INITIAL_TIME;
   //set up remaining time variable
-  countdown = setInterval(updateClock, 1000); //runs update clock() every second
+  countDown = setInterval(updateClock, 1000); //runs update clock() every second
   gameOver = false;
+  gameLoopInterval = setInterval(gameLoop, 60);
 }
-initializeGame();
 
 function endGame(isGameWon) {
   console.log("END GAME");
   //clear count and update game over state var
-  clearInterval(countdown);
+  clearInterval(countDown);
   gameOver = true;
-  if (isGameWon) {
+  if (isGameWon === "yes the game is won") {
     console.log("Finally, I can get some rest.");
-  } else {
+  } else if (isGameWon === "the game is lost") {
     console.log("No sleep tonight!");
     qTip.alive = false;
     fence = false;
     // canvas.style.backgroundImage = "url(images/jumper.jpg)";
+    //if lost make background img change
   }
-  //if lost make background img change
 }
 
 // main game loop
 function gameLoop() {
   // clear the canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
   // check for collisions
   detectHit();
   // render our game objects & stop qTip from jumping too high!
@@ -152,3 +163,5 @@ function gameLoop() {
 }
 //Event Listeners
 document.addEventListener("keydown", moveGamePieces);
+startButton = document.querySelector("#start-button");
+startButton.addEventListener("click", pressStart);
