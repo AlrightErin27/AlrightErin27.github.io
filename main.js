@@ -1,5 +1,5 @@
 //Constants//
-const INITIAL_TIME = 60;
+const INITIAL_TIME = 6;
 
 //App State//
 let timeRemaining = 0;
@@ -72,10 +72,37 @@ function moveGamePieces(e) {
   }
 }
 
+function detectHit() {
+  //check fo collisions on each side one by one
+  let fenceLeft = qTip.x + qTip.width >= fence.x;
+  //   console.log(`fenceLeft`, fenceLeft);
+  let fenceRight = qTip.x <= fence.x + fence.width;
+  //   console.log(`fenceRight`, fenceRight);
+  let checkX = fenceLeft && fenceRight;
+
+  let fenceTop = qTip.y + qTip.height >= fence.y;
+  //   console.log(`fenceTop`, fenceTop);
+  let fenceBottom = qTip.y <= fence.y + fence.height;
+  //   console.log(`fenceBottom`, fenceBottom);
+  let checkY = fenceTop + fenceBottom;
+
+  // let checkXY = checkX && checkY;
+  // console.log(checkXY);
+
+  if (
+    qTip.x + qTip.width >= fence.x &&
+    qTip.x <= fence.x + fence.width &&
+    qTip.y + qTip.height >= fence.y &&
+    qTip.y <= fence.y + fence.height
+  ) {
+    endGame();
+  }
+}
+
 function updateClock() {
   timeRemaining--;
   if (timeRemaining <= 0) {
-    timerEndsGame(false);
+    endGame(false);
   }
   timer.innerText = timeRemaining;
 }
@@ -89,7 +116,7 @@ function initializeGame() {
 }
 initializeGame();
 
-function timerEndsGame(isGameWon) {
+function endGame(isGameWon) {
   console.log("END GAME");
   //clear count and update game over state var
   clearInterval(countdown);
@@ -99,32 +126,28 @@ function timerEndsGame(isGameWon) {
   } else {
     console.log("No sleep tonight!");
     qTip.alive = false;
-    fence = null;
+    fence = false;
     // canvas.style.backgroundImage = "url(images/jumper.jpg)";
   }
   //if lost make background img change
 }
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Collision ends game
-// function collisionEndsGame() {
-//   qTip.alive = false;
-//   clearInterval(gameLoopInterval);
-//   movementDisplay.innerText = "dead!";
-// }
 
 // main game loop
 function gameLoop() {
   // clear the canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   // check for collisions
-  // detectHit();
-  // render our game objects!
+  detectHit();
+  // render our game objects & stop qTip from jumping too high!
   if (qTip.alive) {
     fence.render();
     qTip.render();
   }
   if (qTip.y < 400) {
     qTip.y = qTip.y + 10;
+  }
+  if (qTip.y <= 0) {
+    qTip.y = 0;
   }
 }
 //Event Listeners
