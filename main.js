@@ -42,31 +42,38 @@ class gamePiece {
     ctx.fillRect(this.x, this.y, this.width, this.height);
   }
 }
-
+class enemyGamePieces {
+  constructor(x, y, color, width, height) {
+    this.x = x;
+    this.y = y;
+    this.color = color;
+    this.width = width;
+    this.height = height;
+    this.alive = true;
+  }
+  render() {
+    ctx.fillStyle = this.color;
+    ctx.fillRect(this.x, this.y, this.width, this.height);
+  }
+}
 //Game Pieces
 let qTip = new gamePiece(100, 400, "white", 270, 270);
-let fence = new gamePiece(800, 400, "brown", 50, 200);
-ctx.fillStyle = "rgba(255, 204, 0)";
-ctx.fill();
-// qTip.render();
-// fence.render();
+let fence = new enemyGamePieces(800, 400, "brown", 50, 200);
 
 //Functions
 function moveGamePieces(e) {
   switch (e.key) {
     case " ":
-      qTip.y -= 30;
+      qTip.y = qTip.y - 400;
       break;
     case "w":
-      fence.x -= 30;
+      fence.x = fence.x - 100;
   }
 }
 
 function updateClock() {
-  console.log("Countdown the timer!");
   timeRemaining--;
   if (timeRemaining <= 0) {
-    console.log("Game over! Bomb exploded!");
     timerEndsGame(false);
   }
   timer.innerText = "00:" + timeRemaining;
@@ -90,7 +97,9 @@ function timerEndsGame(isGameWon) {
     console.log("Finally, I can get some rest.");
   } else {
     console.log("No sleep tonight!");
-    canvas.style.backgroundImage = "url(images/jumper.jpg)";
+    qTip.alive = false;
+    fence = null;
+    // canvas.style.backgroundImage = "url(images/jumper.jpg)";
   }
   //if lost make background img change
 }
@@ -109,11 +118,10 @@ function gameLoop() {
   // check for collisions
   // detectHit();
   // render our game objects!
-  if (fence.alive) {
+  if (qTip.alive) {
     fence.render();
+    qTip.render();
   }
-  qTip.render();
 }
-
 //Event Listeners
 document.addEventListener("keydown", moveGamePieces);
