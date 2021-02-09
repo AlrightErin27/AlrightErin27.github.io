@@ -1,29 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display+SC:wght@400;900&display=swap"
-      rel="stylesheet"
-    />
-    <!-- font-family: 'Pacifico', cursive; font-family: 'Playfair Display SC', serif; -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>P1 Game</title>
     <link rel="stylesheet" href="style.css" />
     <script defer src="main.js"></script>
+    <title>Q-tip</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   </head>
   <body>
-    <div id="mainContainer">
-      <aside id="top-box">
-        <h1>Q-tip</h1>
-        <h2>& the race to sleep!</h2>
+    <div id="main-container">
+
+      <aside id="header-container">
+        <img src="images/shinystars.gif" id="stars-left" class="stars"><h1>Q-tip & the race to bed!</h1><img src="images/shinystars.gif" id="stars-right" class="stars">
       </aside>
-      <aside id="secondaryContainer">
-        <aside id="timer-box">
+
+      <aside id="canvas-container"></aside>
+
+      <aside id="footer-container">
+        <aside class="lower-boxes" id="left-bottom-box">
+          <button class="button" id="start-button">Start</button>
+          <button class="button" id="pause-button">Pause</button>
+          <button class="button" id="restart-button">Restart</button>
+        </aside>
+        <aside class="lower-boxes" id="center-bottom-box"></aside>
+        <aside class="lower-boxes" id="right-bottom-box">
           <p id="timer">01:00</p>
         </aside>
       </aside>
-      <button id="start-button">Start</button>
-    </div>
+
   </body>
 </html>
+
+
