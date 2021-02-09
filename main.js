@@ -11,7 +11,7 @@ let startButton = null;
 //variables//
 //~~~~~~~~Buttons
 // const startButton = document.querySelector("#start-button");
-const pauseButton = document.querySelector("#pause-button");
+startButton = document.querySelector("#start-button");
 const restartButton = document.querySelector("#restart-button");
 //~~~~~~~~Timer
 timer = document.querySelector("#timer");
@@ -62,10 +62,9 @@ let qTip = new gamePiece(100, 400, "white", 270, 270);
 let fence = new enemyGamePieces(800, 400, "brown", 50, 200);
 let fences = [];
 
-//Functions
+//Functions//////////////////////////////////////////
 
 //Button's functions
-let startButtonEl = null;
 function pressStart() {
   // console.log("start the game");
   gameOver = false;
@@ -129,6 +128,7 @@ function initializeGame() {
 function endGame(isGameWon) {
   console.log("END GAME");
   //clear count and update game over state var
+
   clearInterval(countDown);
   gameOver = true;
   if (isGameWon === "yes the game is won") {
@@ -163,5 +163,5 @@ function gameLoop() {
 }
 //Event Listeners
 document.addEventListener("keydown", moveGamePieces);
-startButton = document.querySelector("#start-button");
+
 startButton.addEventListener("click", pressStart);
