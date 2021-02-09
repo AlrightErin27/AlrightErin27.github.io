@@ -32,12 +32,18 @@ body {
 #stars-right {
   transform: scaleX(-1);
 }
-#canvas-container {
+main {
   height: 770px;
   width: 1700px;
   background-image: url("images/background.png");
   background-size: contain;
-  /* border: solid red 0.5px; */
+  border: solid red 0.5px;
+}
+canvas {
+  height: 770px;
+  width: 1700px;
+  z-index: 2;
+  /* background-color: #222; */
 }
 #footer-container {
   height: 190px;
