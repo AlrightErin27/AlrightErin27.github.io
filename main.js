@@ -1,5 +1,5 @@
 //Constants//
-const INITIAL_TIME = 6;
+const INITIAL_TIME = 60;
 
 //App State//
 let timeRemaining = 0;
@@ -60,7 +60,7 @@ class enemyGamePieces {
 }
 //Game Pieces
 let qTip = new gamePiece(100, 400, "white", 270, 270);
-let fence = new enemyGamePieces(800, 400, "brown", 50, 200);
+let fence = new enemyGamePieces(2000, 400, "brown", 50, 200);
 let fences = [];
 
 //Functions//////////////////////////////////////////
@@ -72,7 +72,7 @@ function displayModalOne() {
 function displayModalTwo() {
   modalTwo.style.display = "block";
 }
-displayModalOne();
+// displayModalOne();
 //Button's functions
 function pressStart() {
   // console.log("start the game");
@@ -88,8 +88,6 @@ function moveGamePieces(e) {
     case " ":
       qTip.y = qTip.y - 400;
       break;
-    case "w":
-      fence.x = fence.x - 100;
   }
 }
 
@@ -172,6 +170,9 @@ function gameLoop() {
   }
   if (qTip.y <= 0) {
     qTip.y = 0;
+  }
+  if (fence.alive) {
+    fence.x = fence.x - 10;
   }
 }
 //Event Listeners

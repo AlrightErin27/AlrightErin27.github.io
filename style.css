@@ -42,13 +42,16 @@ body {
   overflow: auto; /* Enable scroll if needed */
   height: 700px;
   width: 1200px;
-  background-color: rgba(145, 134, 206, 0.571);
+  background-color: rgba(145, 134, 206, 0.666);
   box-shadow: rgb(255, 238, 09) 0px 0px 100px;
   border: rgba(29, 26, 85, 0.618) solid 25px;
   border-radius: 15%;
   font-family: "Indie Flower", cursive;
   color: rgb(224, 235, 252);
-  font-size: 32px;
+}
+#modal-one-text {
+  padding: 100px 50px 0 50px;
+  font-size: 40px;
 }
 main {
   height: 770px;
