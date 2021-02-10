@@ -60,10 +60,27 @@ class enemyGamePieces {
 }
 //Game Pieces
 let qTip = new gamePiece(100, 400, "white", 270, 270);
+
 let fence = new enemyGamePieces(2000, 400, "brown", 50, 200);
 let fences = [];
+// fences.push(fence);
+// fences.push(fence);
+// console.log(fences);
 
 //Functions//////////////////////////////////////////
+
+function generateFences() {
+  for (let i = 1; i < 100; i++) {
+    //randomly generate the x for fences
+    // integer = Math.floor(Math.random() );
+    // console.log(integer);
+    let spacingVar = i * 200;
+    // fence.x = fence.x * integer;
+    fences.push(new enemyGamePieces(2000 + spacingVar, 400, "brown", 50, 200));
+  }
+  // console.log(fences);
+}
+generateFences();
 
 //Displaying Modals
 function displayModalOne() {
@@ -91,28 +108,12 @@ function moveGamePieces(e) {
   }
 }
 
-function detectHit() {
-  //check fo collisions on each side one by one
-  let fenceLeft = qTip.x + qTip.width >= fence.x;
-  //   console.log(`fenceLeft`, fenceLeft);
-  let fenceRight = qTip.x <= fence.x + fence.width;
-  //   console.log(`fenceRight`, fenceRight);
-  // let checkX = fenceLeft && fenceRight;
-
-  let fenceTop = qTip.y + qTip.height >= fence.y;
-  //   console.log(`fenceTop`, fenceTop);
-  let fenceBottom = qTip.y <= fence.y + fence.height;
-  //   console.log(`fenceBottom`, fenceBottom);
-  // let checkY = fenceTop + fenceBottom;
-
-  // let checkXY = checkX && checkY;
-  // console.log(checkXY);
-
+function detectHit(anyFence) {
   if (
-    qTip.x + qTip.width >= fence.x &&
-    qTip.x <= fence.x + fence.width &&
-    qTip.y + qTip.height >= fence.y &&
-    qTip.y <= fence.y + fence.height
+    qTip.x + qTip.width >= anyFence.x &&
+    qTip.x <= anyFence.x + anyFence.width &&
+    qTip.y + qTip.height >= anyFence.y &&
+    qTip.y <= anyFence.y + anyFence.height
   ) {
     endGame("the game is lost");
   }
@@ -142,6 +143,7 @@ function endGame(isGameWon) {
   timeRemaining = 0;
   gameOver = true;
   clearInterval(countDown);
+
   if (isGameWon === "yes the game is won") {
     console.log("Finally, I can get some rest.");
   } else if (isGameWon === "the game is lost") {
@@ -159,10 +161,16 @@ function gameLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // check for collisions
-  detectHit();
+  // detectHit();
+
   // render our game objects & stop qTip from jumping too high!
   if (qTip.alive) {
-    fence.render();
+    for (let i = 0; i < fences.length; i++) {
+      if (fences[i].alive) {
+        fences[i].x = fences[i].x - 10;
+      }
+      fences[i].render();
+    }
     qTip.render();
   }
   if (qTip.y < 400) {
@@ -171,11 +179,7 @@ function gameLoop() {
   if (qTip.y <= 0) {
     qTip.y = 0;
   }
-  if (fence.alive) {
-    fence.x = fence.x - 10;
-  }
 }
 //Event Listeners
 document.addEventListener("keydown", moveGamePieces);
-
 startButton.addEventListener("click", pressStart);
