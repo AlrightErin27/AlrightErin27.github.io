@@ -1,18 +1,18 @@
 //Constants//
-const INITIAL_TIME = 60;
+const INITIAL_TIME = 6;
 
 //App State//
 let timeRemaining = 0;
 let countDown = null;
-let gameOver = false;
+let gameOver = true;
 let timer = null;
 let startButton = null;
 
 //variables//
 //~~~~~~~~Buttons
-// const startButton = document.querySelector("#start-button");
 startButton = document.querySelector("#start-button");
-const restartButton = document.querySelector("#restart-button");
+//~~~~~~~~Modals
+let modalOne = document.querySelector("#modal-one");
 //~~~~~~~~Timer
 timer = document.querySelector("#timer");
 //~~~~~~~~Info Display
@@ -64,11 +64,20 @@ let fences = [];
 
 //Functions//////////////////////////////////////////
 
+//Displaying Modals
+function displayModalOne() {
+  modalOne.style.display = "block";
+}
+displayModalOne();
+
 //Button's functions
 function pressStart() {
   // console.log("start the game");
-  gameOver = false;
-  initializeGame();
+  if (gameOver === true) {
+    initializeGame();
+    startButton = null;
+    gameOver = false;
+  }
 }
 
 function moveGamePieces(e) {
@@ -119,6 +128,7 @@ function updateClock() {
 function initializeGame() {
   // console.log("Set the game up!")
   timeRemaining = INITIAL_TIME;
+
   //set up remaining time variable
   countDown = setInterval(updateClock, 1000); //runs update clock() every second
   gameOver = false;
@@ -128,9 +138,9 @@ function initializeGame() {
 function endGame(isGameWon) {
   console.log("END GAME");
   //clear count and update game over state var
-
-  clearInterval(countDown);
+  timeRemaining = 0;
   gameOver = true;
+  clearInterval(countDown);
   if (isGameWon === "yes the game is won") {
     console.log("Finally, I can get some rest.");
   } else if (isGameWon === "the game is lost") {
