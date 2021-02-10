@@ -36,17 +36,19 @@ body {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  left: 23%;
-  top: 20%;
+  text-align: center;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   height: 700px;
   width: 1200px;
-  background-color: rgb(145, 134, 206);
+  background-color: rgba(145, 134, 206, 0.571);
   box-shadow: rgb(255, 238, 09) 0px 0px 100px;
-  border: rgb(29, 26, 85) solid 25px;
+  border: rgba(29, 26, 85, 0.618) solid 25px;
   border-radius: 15%;
+  font-family: "Indie Flower", cursive;
+  color: rgb(224, 235, 252);
+  font-size: 32px;
 }
 main {
   height: 770px;

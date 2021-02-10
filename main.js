@@ -13,6 +13,7 @@ let startButton = null;
 startButton = document.querySelector("#start-button");
 //~~~~~~~~Modals
 let modalOne = document.querySelector("#modal-one");
+let modalTwo = document.querySelector("#modal-two");
 //~~~~~~~~Timer
 timer = document.querySelector("#timer");
 //~~~~~~~~Info Display
@@ -68,8 +69,10 @@ let fences = [];
 function displayModalOne() {
   modalOne.style.display = "block";
 }
+function displayModalTwo() {
+  modalTwo.style.display = "block";
+}
 displayModalOne();
-
 //Button's functions
 function pressStart() {
   // console.log("start the game");
