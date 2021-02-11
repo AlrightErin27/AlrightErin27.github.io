@@ -31,7 +31,7 @@ let gameLoopInterval = null;
 
 //Game Piece Class
 class gamePiece {
-  constructor(x, y, color, width, height) {
+  constructor(x, y, color, width, height, image) {
     this.x = x;
     this.y = y;
     this.color = color;
@@ -161,7 +161,13 @@ function gameLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // check for collisions
-  // detectHit();
+  if (qTip.alive) {
+    for (let i = 0; i < fences.length; i++) {
+      if (fences[i].alive) {
+        detectHit(fences[i]);
+      }
+    }
+  }
 
   // render our game objects & stop qTip from jumping too high!
   if (qTip.alive) {
