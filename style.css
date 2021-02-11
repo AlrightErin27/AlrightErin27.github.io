@@ -45,11 +45,11 @@ body {
   border-radius: 15%;
   font-family: "Indie Flower", cursive;
   color: rgb(224, 235, 252);
-  font-size: 44px;
-  background-image: url("images/8bitmoon.gif"), url("images/colorQtip.png");
+  font-size: 49px;
+  background-image: url("images/colorQtip.png");
   background-repeat: no-repeat;
-  background-position: right top, top left;
-  background-size: 200px 200px, 500px 500px;
+  background-position: top left;
+  background-size: 470px 470px;
 }
 button {
   width: 300px;
@@ -64,6 +64,24 @@ button {
 button:hover {
   background-color: rgba(255, 254, 200);
   color: rgb(29, 26, 85);
+}
+#modal-two {
+  display: none; /* block= show */
+  position: fixed;
+  z-index: 1;
+  text-align: center;
+  height: 700px;
+  width: 1200px;
+  background-color: rgba(0, 0, 0);
+  box-shadow: rgb(255, 238, 09) 0px 0px 100px;
+  border: rgba(29, 26, 85, 0.618) solid 25px;
+  border-radius: 15%;
+  font-family: "Indie Flower", cursive;
+  color: rgb(224, 235, 252);
+  font-size: 44px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("images/nonsleep.jpg");
 }
 main {
   height: 770px;

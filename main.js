@@ -9,8 +9,25 @@ let timer = null;
 let startButton = null;
 
 //variables//
+class Sound {
+  constructor(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+  }
+  play() {
+    this.sound.play();
+  }
+}
+let music = new Sound("sound/WaterWoodAndStone.mp3");
+// music.play();
+
 //~~~~~~~~Buttons
 startButton = document.querySelector("#start-button");
+restartButton = document.querySelector("#restart-button");
 //~~~~~~~~Modals
 let modalOne = document.querySelector("#modal-one");
 let modalTwo = document.querySelector("#modal-two");
@@ -37,11 +54,12 @@ class gamePiece {
     this.color = color;
     this.width = width;
     this.height = height;
+    this.image = image;
     this.alive = true;
   }
   render() {
     ctx.fillStyle = this.color;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   }
 }
 class enemyGamePieces {
@@ -59,7 +77,10 @@ class enemyGamePieces {
   }
 }
 //Game Pieces
-let qTip = new gamePiece(100, 400, "white", 270, 270);
+let qTipImage = new Image();
+qTipImage.src = "./images/qTip1.png";
+console.log(qTipImage);
+let qTip = new gamePiece(100, 400, "white", 270, 270, qTipImage);
 let fences = [];
 
 //Functions//////////////////////////////////////////
@@ -72,7 +93,6 @@ function generateFences() {
     fences.push(new enemyGamePieces(1000 + spacingVar, 400, "brown", 50, 200));
   }
 }
-generateFences();
 
 //Displaying Modals
 function displayModalOne() {
@@ -84,7 +104,9 @@ function displayModalTwo() {
 // displayModalOne();
 //Button's functions
 function pressStart() {
-  // console.log("start the game");
+  //hides modal #1 when start is pressed
+  modalOne.style.display = "none";
+  // music.play();
   if (gameOver === true) {
     initializeGame();
     startButton = null;
@@ -123,6 +145,10 @@ function initializeGame() {
   // console.log("Set the game up!")
   timeRemaining = INITIAL_TIME;
 
+  //new fences
+  fences = [];
+  generateFences();
+
   //set up remaining time variable
   countDown = setInterval(updateClock, 1000); //runs update clock() every second
   gameOver = false;
@@ -142,6 +168,7 @@ function endGame(isGameWon) {
     console.log("No sleep tonight!");
     qTip.alive = false;
     fence = false;
+    modalTwo.style.display = "block";
     // canvas.style.backgroundImage = "url(images/jumper.jpg)";
     //if lost make background img change
   }
@@ -149,9 +176,9 @@ function endGame(isGameWon) {
 
 // main game loop
 function gameLoop() {
+  console.log("tick");
   // clear the canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-
   // check for collisions
   if (qTip.alive) {
     for (let i = 0; i < fences.length; i++) {
@@ -160,12 +187,11 @@ function gameLoop() {
       }
     }
   }
-
   // render our game objects & stop qTip from jumping too high!
   if (qTip.alive) {
     for (let i = 0; i < fences.length; i++) {
       if (fences[i].alive) {
-        fences[i].x = fences[i].x - 10;
+        fences[i].x = fences[i].x - 50;
       }
       fences[i].render();
     }
@@ -178,6 +204,17 @@ function gameLoop() {
     qTip.y = 0;
   }
 }
+
+function pressRestart() {
+  modalTwo.style.display = "none";
+  initializeGame();
+  updateClock();
+  // gameLoop();
+  qTip.alive = true;
+  // fences.alive = true;
+}
+
 //Event Listeners
 document.addEventListener("keydown", moveGamePieces);
 startButton.addEventListener("click", pressStart);
+restartButton.addEventListener("click", pressRestart);
