@@ -67,8 +67,8 @@ let qTipImage = new Image();
 qTipImage.src = "./images/colorQtipcropped.png";
 let qTipRunningImage = new Image();
 qTipRunningImage.src = "./images/jumper.png";
-
 let qTip = new gamePiece(100, 400, "white", 460, 270, qTipImage);
+
 let fences = [];
 
 //music
@@ -172,6 +172,7 @@ function endGame(isGameWon) {
   timeRemaining = 0;
   gameOver = true;
   clearInterval(countDown);
+  clearInterval(gameLoopInterval);
 
   if (isGameWon === "yes the game is won") {
     console.log("Finally, I can get some rest.");
