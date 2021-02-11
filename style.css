@@ -32,14 +32,11 @@ body {
 #stars-right {
   transform: scaleX(-1);
 }
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+#modal-one {
+  display: block; /* none = Hidden by default */
+  position: fixed;
+  z-index: 1;
   text-align: center;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
   height: 700px;
   width: 1200px;
   background-color: rgba(145, 134, 206, 0.666);
@@ -48,10 +45,25 @@ body {
   border-radius: 15%;
   font-family: "Indie Flower", cursive;
   color: rgb(224, 235, 252);
+  font-size: 44px;
+  background-image: url("images/8bitmoon.gif"), url("images/colorQtip.png");
+  background-repeat: no-repeat;
+  background-position: right top, top left;
+  background-size: 200px 200px, 500px 500px;
 }
-#modal-one-text {
-  padding: 100px 50px 0 50px;
-  font-size: 40px;
+button {
+  width: 300px;
+  height: 80px;
+  font-family: "Pacifico", cursive;
+  font-size: 45px;
+  background-color: rgb(52, 127, 152);
+  outline: none;
+  color: rgb(224, 235, 252);
+  box-shadow: rgb(255, 238, 09) 0px 0px 14px;
+}
+button:hover {
+  background-color: rgba(255, 254, 200);
+  color: rgb(29, 26, 85);
 }
 main {
   height: 770px;
@@ -90,23 +102,7 @@ canvas {
   font-size: 32px;
   text-align: center;
 }
-button {
-  width: 300px;
-  height: 50px;
-  font-family: "Pacifico", cursive;
-  font-size: 35px;
-  background-color: rgb(52, 127, 152);
-  outline: none;
-  color: rgb(224, 235, 252);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: rgb(255, 238, 09) 0px 0px 14px;
-}
-button:hover {
-  background-color: rgba(255, 254, 200);
-  color: rgb(29, 26, 85);
-}
+
 #timer {
   font-family: "Pacifico", cursive;
   font-size: 120px;
