@@ -9,22 +9,6 @@ let timer = null;
 let startButton = null;
 
 //variables//
-class Sound {
-  constructor(src) {
-    this.sound = document.createElement("audio");
-    this.sound.src = src;
-    this.sound.setAttribute("preload", "auto");
-    this.sound.setAttribute("controls", "none");
-    this.sound.style.display = "none";
-    document.body.appendChild(this.sound);
-  }
-  play() {
-    this.sound.play();
-  }
-}
-let music = new Sound("sound/WaterWoodAndStone.mp3");
-// music.play();
-
 //~~~~~~~~Buttons
 startButton = document.querySelector("#start-button");
 restartButton = document.querySelector("#restart-button");
@@ -47,6 +31,7 @@ canvas.setAttribute("width", getComputedStyle(canvas)["width"]);
 let gameLoopInterval = null;
 
 //Game Piece Class
+//Qtip Class
 class gamePiece {
   constructor(x, y, color, width, height, image) {
     this.x = x;
@@ -62,6 +47,7 @@ class gamePiece {
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   }
 }
+///fences game pieces Class
 class enemyGamePieces {
   constructor(x, y, color, width, height) {
     this.x = x;
@@ -78,10 +64,28 @@ class enemyGamePieces {
 }
 //Game Pieces
 let qTipImage = new Image();
-qTipImage.src = "./images/qTip1.png";
-console.log(qTipImage);
-let qTip = new gamePiece(100, 400, "white", 270, 270, qTipImage);
+qTipImage.src = "./images/colorQtipcropped.png";
+let qTipRunningImage = new Image();
+qTipRunningImage.src = "./images/jumper.png";
+
+let qTip = new gamePiece(100, 400, "white", 460, 270, qTipImage);
 let fences = [];
+
+//music
+class Sound {
+  constructor(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+  }
+  play() {
+    this.sound.play();
+  }
+}
+let music = new Sound("sound/WaterWoodAndStone.mp3");
 
 //Functions//////////////////////////////////////////
 
@@ -112,6 +116,13 @@ function pressStart() {
     startButton = null;
     gameOver = false;
   }
+}
+function pressRestart() {
+  modalTwo.style.display = "none";
+  initializeGame();
+  updateClock();
+  gameLoop();
+  qTip.alive = true;
 }
 
 function moveGamePieces(e) {
@@ -176,7 +187,6 @@ function endGame(isGameWon) {
 
 // main game loop
 function gameLoop() {
-  console.log("tick");
   // clear the canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   // check for collisions
@@ -191,7 +201,7 @@ function gameLoop() {
   if (qTip.alive) {
     for (let i = 0; i < fences.length; i++) {
       if (fences[i].alive) {
-        fences[i].x = fences[i].x - 50;
+        fences[i].x = fences[i].x - 10;
       }
       fences[i].render();
     }
@@ -203,15 +213,11 @@ function gameLoop() {
   if (qTip.y <= 0) {
     qTip.y = 0;
   }
-}
-
-function pressRestart() {
-  modalTwo.style.display = "none";
-  initializeGame();
-  updateClock();
-  // gameLoop();
-  qTip.alive = true;
-  // fences.alive = true;
+  if (qTip.y < 300) {
+    qTip.image = qTipRunningImage;
+  } else {
+    qTip.image = qTipImage;
+  }
 }
 
 //Event Listeners

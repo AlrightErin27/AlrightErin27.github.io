@@ -51,20 +51,6 @@ body {
   background-position: top left;
   background-size: 470px 470px;
 }
-button {
-  width: 300px;
-  height: 80px;
-  font-family: "Pacifico", cursive;
-  font-size: 45px;
-  background-color: rgb(52, 127, 152);
-  outline: none;
-  color: rgb(224, 235, 252);
-  box-shadow: rgb(255, 238, 09) 0px 0px 14px;
-}
-button:hover {
-  background-color: rgba(255, 254, 200);
-  color: rgb(29, 26, 85);
-}
 #modal-two {
   display: none; /* block= show */
   position: fixed;
@@ -83,6 +69,21 @@ button:hover {
   background-position: center;
   background-image: url("images/nonsleep.jpg");
 }
+button {
+  width: 300px;
+  height: 80px;
+  font-family: "Pacifico", cursive;
+  font-size: 45px;
+  background-color: rgb(52, 127, 152);
+  outline: none;
+  color: rgb(224, 235, 252);
+  box-shadow: rgb(255, 238, 09) 0px 0px 14px;
+}
+button:hover {
+  background-color: rgba(255, 254, 200);
+  color: rgb(29, 26, 85);
+}
+
 main {
   height: 770px;
   width: 1700px;
