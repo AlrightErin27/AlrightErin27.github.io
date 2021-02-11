@@ -60,25 +60,17 @@ class enemyGamePieces {
 }
 //Game Pieces
 let qTip = new gamePiece(100, 400, "white", 270, 270);
-
-let fence = new enemyGamePieces(2000, 400, "brown", 50, 200);
 let fences = [];
-// fences.push(fence);
-// fences.push(fence);
-// console.log(fences);
 
 //Functions//////////////////////////////////////////
 
 function generateFences() {
   for (let i = 1; i < 100; i++) {
-    //randomly generate the x for fences
-    // integer = Math.floor(Math.random() );
-    // console.log(integer);
-    let spacingVar = i * 200;
-    // fence.x = fence.x * integer;
-    fences.push(new enemyGamePieces(2000 + spacingVar, 400, "brown", 50, 200));
+    randomInt = Math.floor(Math.random() * (2000 - 20 + 1) + 20);
+    // console.log(randomInt);
+    let spacingVar = i * randomInt;
+    fences.push(new enemyGamePieces(1000 + spacingVar, 400, "brown", 50, 200));
   }
-  // console.log(fences);
 }
 generateFences();
 
