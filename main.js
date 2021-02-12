@@ -1,5 +1,5 @@
 //Constants//
-const INITIAL_TIME = 60;
+const INITIAL_TIME = 5;
 
 //App State//
 let timeRemaining = 0;
@@ -15,6 +15,8 @@ restartButton = document.querySelector("#restart-button");
 //~~~~~~~~Modals
 let modalOne = document.querySelector("#modal-one");
 let modalTwo = document.querySelector("#modal-two");
+let modalThree = document.querySelector("#modal-three");
+
 //~~~~~~~~Timer
 timer = document.querySelector("#timer");
 //~~~~~~~~Info Display
@@ -49,17 +51,18 @@ class gamePiece {
 }
 ///fences game pieces Class
 class enemyGamePieces {
-  constructor(x, y, color, width, height) {
+  constructor(x, y, color, width, height, image) {
     this.x = x;
     this.y = y;
     this.color = color;
     this.width = width;
     this.height = height;
+    this.image = image;
     this.alive = true;
   }
   render() {
     ctx.fillStyle = this.color;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
+    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
   }
 }
 //Game Pieces
@@ -69,6 +72,8 @@ let qTipRunningImage = new Image();
 qTipRunningImage.src = "./images/jumper.png";
 let qTip = new gamePiece(100, 400, "white", 460, 270, qTipImage);
 
+let fenceImage = new Image();
+fenceImage.src = "./images/littlefence.png";
 let fences = [];
 
 //music
@@ -94,7 +99,9 @@ function generateFences() {
     randomInt = Math.floor(Math.random() * (2000 - 20 + 1) + 20);
     // console.log(randomInt);
     let spacingVar = i * randomInt;
-    fences.push(new enemyGamePieces(1000 + spacingVar, 400, "brown", 50, 200));
+    fences.push(
+      new enemyGamePieces(1000 + spacingVar, 450, "brown", 90, 370, fenceImage)
+    );
   }
 }
 
@@ -147,7 +154,7 @@ function detectHit(anyFence) {
 function updateClock() {
   timeRemaining--;
   if (timeRemaining <= 0) {
-    endGame("the game is lost");
+    endGame("yes the game is won");
   }
   timer.innerText = timeRemaining;
 }
@@ -176,6 +183,7 @@ function endGame(isGameWon) {
 
   if (isGameWon === "yes the game is won") {
     console.log("Finally, I can get some rest.");
+    modalThree.style.display = "block";
   } else if (isGameWon === "the game is lost") {
     console.log("No sleep tonight!");
     qTip.alive = false;
