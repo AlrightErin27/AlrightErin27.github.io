@@ -1,5 +1,5 @@
 //Constants//
-const INITIAL_TIME = 5;
+const INITIAL_TIME = 60;
 
 //App State//
 let timeRemaining = 0;
@@ -12,6 +12,8 @@ let startButton = null;
 //~~~~~~~~Buttons
 startButton = document.querySelector("#start-button");
 restartButton = document.querySelector("#restart-button");
+restartButtonTwo = document.querySelector("#restart-button-two");
+
 //~~~~~~~~Modals
 let modalOne = document.querySelector("#modal-one");
 let modalTwo = document.querySelector("#modal-two");
@@ -70,7 +72,7 @@ let qTipImage = new Image();
 qTipImage.src = "./images/colorQtipcropped.png";
 let qTipRunningImage = new Image();
 qTipRunningImage.src = "./images/jumper.png";
-let qTip = new gamePiece(100, 400, "white", 460, 270, qTipImage);
+let qTip = new gamePiece(100, 400, "white", 400, 270, qTipImage);
 
 let fenceImage = new Image();
 fenceImage.src = "./images/littlefence.png";
@@ -126,6 +128,13 @@ function pressStart() {
 }
 function pressRestart() {
   modalTwo.style.display = "none";
+  initializeGame();
+  updateClock();
+  gameLoop();
+  qTip.alive = true;
+}
+function pressRestartTwo() {
+  modalThree.style.display = "none";
   initializeGame();
   updateClock();
   gameLoop();
@@ -233,3 +242,4 @@ function gameLoop() {
 document.addEventListener("keydown", moveGamePieces);
 startButton.addEventListener("click", pressStart);
 restartButton.addEventListener("click", pressRestart);
+restartButtonTwo.addEventListener("click", pressRestartTwo);

@@ -64,7 +64,7 @@ body {
   border-radius: 15%;
   font-family: "Indie Flower", cursive;
   color: rgb(224, 235, 252);
-  font-size: 44px;
+  font-size: 55px;
   background-repeat: no-repeat;
   background-position: center;
   background-image: url("images/nonsleep.jpg");
@@ -76,17 +76,16 @@ body {
   text-align: center;
   height: 700px;
   width: 1200px;
-  background-color: rgba(216, 32, 207, 0.892);
+  background-color: rgba(51, 148, 252, 0.797);
   box-shadow: rgb(255, 238, 09) 0px 0px 100px;
   border: rgba(29, 26, 85, 0.618) solid 25px;
   border-radius: 15%;
   font-family: "Indie Flower", cursive;
   color: rgb(224, 235, 252);
-  font-size: 49px;
-  background-image: url("images/colorQtip.png");
+  font-size: 55px;
+  background-image: url("images/pillow.gif");
   background-repeat: no-repeat;
-  background-position: top left;
-  background-size: 470px 470px;
+  background-position: center;
 }
 button {
   width: 300px;
@@ -102,14 +101,12 @@ button:hover {
   background-color: rgba(255, 254, 200);
   color: rgb(29, 26, 85);
 }
-
 main {
   height: 770px;
   width: 1700px;
   background-image: url("images/background.png");
   background-size: contain;
 }
-
 canvas {
   height: 770px;
   width: 1700px;
@@ -140,7 +137,6 @@ canvas {
   font-size: 32px;
   text-align: center;
 }
-
 #timer {
   font-family: "Pacifico", cursive;
   font-size: 120px;
