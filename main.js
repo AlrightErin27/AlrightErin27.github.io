@@ -1,5 +1,5 @@
 //Constants//
-const INITIAL_TIME = 60;
+const INITIAL_TIME = 10;
 
 //App State//
 let timeRemaining = 0;
