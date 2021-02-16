@@ -53,3 +53,11 @@ OG game: [DinoRunGame](https://i.imgur.com/gu4zStt.png).
   <p>-Add sound effects.</p>
   <p>-Have timer appear on screen.</p>
   <p>-"Catching Z's" floating 'z's that if you collide with subtract 10 seconds off you timer.</p>
+<p><center>----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</center></p>
+ <h1> References </h1>
+ <p>www.pixlr.com        -for image editing, and creating PNG files.</p>
+ <p>www.giphy.com        -for animated gif stickers.</P>
+ <p>www.mixkit.co        -for free sound effects downloaded as .wav files.</p>
+ <p>www.freeiconspng.com -used to get png files of sheep & fences.</p>
+ <p>www.iStock.com       -used to get all other 8bit images.</p>
+ <p>www.W3schools.com    -used as tool to understand JavaScript.</p>
