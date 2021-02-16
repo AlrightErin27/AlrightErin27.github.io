@@ -1,7 +1,6 @@
 ### P1-Sleep-Game
 
-<center><h1> Q-tip </h1></center>
-<p>*Title Ideas: "Bahhh Humbug" or "Q-tip & The Race to Bed"</p>
+<center><h1> Q-tip & the Race to Bed! </h1></center>
 
 <center><h3> Overview </h3></center>
 <p>Game Inspiration</p>
