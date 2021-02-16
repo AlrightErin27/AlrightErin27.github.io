@@ -1,5 +1,5 @@
 //Constants//
-const INITIAL_TIME = 10;
+const INITIAL_TIME = 60;
 
 //App State//
 let timeRemaining = 0;
@@ -92,7 +92,9 @@ class Sound {
     this.sound.play();
   }
 }
-let music = new Sound("sound/WaterWoodAndStone.mp3");
+let jumpSound = new Sound("sound/jumpsound.wav");
+let winnerSound = new Sound("sound/winner.wav");
+let loserSound = new Sound("sound/loser.wav");
 
 //Functions//////////////////////////////////////////
 
@@ -119,7 +121,7 @@ function displayModalTwo() {
 function pressStart() {
   //hides modal #1 when start is pressed
   modalOne.style.display = "none";
-  // music.play();
+
   if (gameOver === true) {
     initializeGame();
     startButton = null;
@@ -145,6 +147,7 @@ function moveGamePieces(e) {
   switch (e.key) {
     case " ":
       qTip.y = qTip.y - 400;
+      jumpSound.play();
       break;
   }
 }
@@ -171,7 +174,6 @@ function updateClock() {
 function initializeGame() {
   // console.log("Set the game up!")
   timeRemaining = INITIAL_TIME;
-
   //new fences
   fences = [];
   generateFences();
@@ -193,13 +195,13 @@ function endGame(isGameWon) {
   if (isGameWon === "yes the game is won") {
     console.log("Finally, I can get some rest.");
     modalThree.style.display = "block";
+    winnerSound.play();
   } else if (isGameWon === "the game is lost") {
     console.log("No sleep tonight!");
     qTip.alive = false;
     fence = false;
     modalTwo.style.display = "block";
-    // canvas.style.backgroundImage = "url(images/jumper.jpg)";
-    //if lost make background img change
+    loserSound.play();
   }
 }
 
