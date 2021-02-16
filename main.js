@@ -100,7 +100,7 @@ let loserSound = new Sound("sound/loser.wav");
 
 function generateFences() {
   for (let i = 1; i < 100; i++) {
-    randomInt = Math.floor(Math.random() * (2000 - 20 + 1) + 20);
+    randomInt = Math.floor(Math.random() * (2000 - 400 + 1) + 400);
     // console.log(randomInt);
     let spacingVar = i * randomInt;
     fences.push(
