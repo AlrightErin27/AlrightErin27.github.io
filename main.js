@@ -142,7 +142,6 @@ function pressRestartTwo() {
   gameLoop();
   qTip.alive = true;
 }
-
 function moveGamePieces(e) {
   switch (e.key) {
     case " ":
@@ -151,7 +150,6 @@ function moveGamePieces(e) {
       break;
   }
 }
-
 function detectHit(anyFence) {
   if (
     qTip.x + qTip.width >= anyFence.x &&
@@ -162,7 +160,6 @@ function detectHit(anyFence) {
     endGame("the game is lost");
   }
 }
-
 function updateClock() {
   timeRemaining--;
   if (timeRemaining <= 0) {
@@ -170,7 +167,6 @@ function updateClock() {
   }
   timer.innerText = timeRemaining;
 }
-
 function initializeGame() {
   // console.log("Set the game up!")
   timeRemaining = INITIAL_TIME;
@@ -183,7 +179,6 @@ function initializeGame() {
   gameOver = false;
   gameLoopInterval = setInterval(gameLoop, 60);
 }
-
 function endGame(isGameWon) {
   console.log("END GAME");
   //clear count and update game over state var
